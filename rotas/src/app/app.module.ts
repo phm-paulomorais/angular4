@@ -1,3 +1,4 @@
+import { AlunosGuard } from './guards/alunos.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'angular2-materialize';
@@ -13,15 +14,20 @@ import { LoginComponent } from './login/login.component';
 //import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
 //import { CursosService } from './cursos/cursos.service';
 //import { CursoNaoEncontradoComponent } from './cursos/curso-nao-encontrado/curso-nao-encontrado.component';
-import { CursosModule } from './cursos/cursos.module';
+//import { CursosModule } from './cursos/cursos.module';
 import { AppRoutingModule } from './app.routing.module';
-
+//import { AlunosModule } from './alunos/alunos.module';
+import { AuthService } from './login/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { CursosGuard } from './guards/cursos.guard';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PaginaNaoEncontradaComponent
 //  CursosComponent,
 //  CursoDetalheComponent,
 //  CursoNaoEncontradoComponent
@@ -31,11 +37,12 @@ import { AppRoutingModule } from './app.routing.module';
     FormsModule,
     HttpModule,
     MaterializeModule,
-    CursosModule,
+    //CursosModule,
+    //AlunosModule,
     AppRoutingModule
 //    routing
   ],
-  providers: [/*CursosService*/],
+  providers: [AuthService, AuthGuard, CursosGuard, AlunosGuard /*CursosService*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
